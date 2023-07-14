@@ -1,0 +1,86 @@
+{
+  "name": "datascientists-utils",
+  "displayName": "Datascientists utils",
+  "description": "Utils for commonly used tools by datascientists",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Datascientist utils",
+      "properties": {
+        "dsUtils.interpreter": {
+          "type": "string",
+          "default": "python",
+          "description": "Datascientist utils python interpreter."
+        },
+        "dsUtils.htmlFolder": {
+          "type": "string",
+          "default": ".",
+          "description": "Absolute or relative folder where to export html notebooks."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "dsUtils.checkSettings",
+        "title": "Datascientist utils check settings"
+      },
+      {
+        "command": "dsUtils.scriptToNotebook",
+        "title": "Sync to Jupyter Notebook"
+      },
+      {
+        "command": "dsUtils.notebookToScript",
+        "title": "Sync to Script"
+      },
+      {
+        "command": "dsUtils.exportToHTML",
+        "title": "Export to HTML"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+          {
+              "command": "dsUtils.scriptToNotebook",
+              "when": "resourceLangId == python"
+          },
+          {
+            "command": "dsUtils.notebookToScript",
+            "when": "resourceExtname == .ipynb"
+          },
+          {
+            "command": "dsUtils.exportToHTML",
+            "when": "resourceExtname == .ipynb"
+          }
+        ]
+      }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "20.2.5",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "eslint": "^8.41.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.3",
+    "@vscode/test-electron": "^2.3.2"
+  }
+}
