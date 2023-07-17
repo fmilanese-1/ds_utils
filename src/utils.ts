@@ -29,7 +29,7 @@ function hasExecutablePermission(filePath: string): boolean {
     try {
       // Get the file's stats and check it exists
       const stats = fs.statSync(filePath);
-      if (!stats.isFile()){ 
+      if (!stats.isFile()){
         return false;
       }
 
@@ -42,7 +42,7 @@ function hasExecutablePermission(filePath: string): boolean {
       // Handle file not found or permission denied errors
       console.error(error);
     }
-  
+
     return false;
   }
 
@@ -53,17 +53,25 @@ export function executePython(command: string) {
         String(command),
     );
     console.log(python_command);
-    exec(python_command, (error, stdout, stderr) => {
+
+
+    return new Promise((resolve, reject)=>{
+      exec(python_command, (error, stdout, stderr) => {
         if (error) {
             vscode.window.showErrorMessage(`error: ${error.message}`);
+            reject(error);
         }
         else if (stderr) {
             vscode.window.showErrorMessage(`stderr: ${stderr}`);
+            reject(error);
         }
         else {
         console.log(stdout);
+        resolve(stdout.trim());
         }
-    });
+      });
+    })
+
 }
 
 export function openNotebook(filePath: string){
@@ -133,7 +141,7 @@ export function injectTableOfContents(filePath: string){
       text-decoration: underline;
     }
   </style>
-  
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $(document).ready(function() {
@@ -198,4 +206,3 @@ export function injectTableOfContents(filePath: string){
         vscode.window.showInformationMessage("Added TOC header to output html.");
     }
 }
-      
