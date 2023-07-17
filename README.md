@@ -5,7 +5,7 @@
 
 > Seamlessly migrate to Visual Studio Code: Empowering data scientists to effortlessly transition from Jupyter to a superior coding experience. Right now we deal with HTML/TOC exports within VSCode and translations from Jupyter notebooks to percent scripts via [Jupytext](https://jupytext.readthedocs.io/en/latest/index.html).
 
-![Preview](./images/logo.gif)
+![Preview](./images/preview.gif)
 
 ## Features
 
@@ -46,7 +46,7 @@ Please ensure your pull request adheres to the project's guidelines and conventi
 
 ## Release History
 
-- **Version 0.0.1-2** (2023-07-17)
+- **Version 0.0.1-3** (2023-07-17)
   - Pre-release version for testing and early feedback.
   - Included feature of exporting percent scripts to notebooks via Jupytext.
   - Included feature of exporting notebooks to percent scripts via Jupytext.
