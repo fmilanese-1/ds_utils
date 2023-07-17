@@ -1,71 +1,60 @@
-# datascientists-utils README
+# Datascientists Utils
 
-This is the README for your extension "datascientists-utils". After writing up a brief description, we recommend including the following sections.
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/YOUR_EXTENSION_ID)](https://marketplace.visualstudio.com/items?itemName=YOUR_EXTENSION_ID)
+[![GitHub](https://img.shields.io/github/license/YOUR_USERNAME/YOUR_REPOSITORY)](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/blob/main/LICENSE)
+
+> Your extension's tagline or brief description.
+
+![Preview](./images/preview.png)
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- List the main features and functionalities of your extension.
+- Highlight how it solves the problems or provides value to users.
+- You can include screenshots or GIFs to demonstrate the usage.
 
-For example if there is an image subfolder under your extension project workspace:
+## Installation
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Launch Visual Studio Code.
+2. Go to the Extensions view (`Ctrl+Shift+X` or `Cmd+Shift+X` on macOS).
+3. Search for "Datascientists Utils" and click **Install**.
+4. Restart Visual Studio Code if prompted.
+5. On Extensions' setting page go to Datascience utils and add the full path to a python interpreter and a html exported folder.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Usage
 
-## Requirements
+1. Describe how to access and utilize your extension's functionality.
+2. Provide examples and code snippets if applicable.
+3. Explain any settings or configurations users might need to set up.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Contributing
 
-## Extension Settings
+Contributions are welcome! Please follow these steps to contribute to the project:
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+1. Fork the repository.
+2. Create a new branch for your contribution.
+3. Make your changes and commit them.
+4. Push your changes to your fork.
+5. Submit a pull request to the main repository.
 
-For example:
+Please ensure your pull request adheres to the project's guidelines and conventions.
 
-This extension contributes the following settings:
+## Release History
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- **Version 0.1.0** (2023-07-17)
+  - Pre-release version for testing and early feedback.
+  - Included feature of exporting percent scripts to notebooks via Jupytext.
+  - Included feature of exporting notebooks to percent scripts via Jupytext.
+  - Included feature of exporting notebooks to HTML with a JS defined Table of Contents.
 
-## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+For a complete list of releases and changes, please refer to the [Changelog](./CHANGELOG.md).
 
-## Release Notes
+## Feedback and Support
 
-Users appreciate release notes as you update your extension.
+- If you encounter any issues or have suggestions, please [create an issue](https://github.com/fmilanese-1/ds_utils/issues).
+- Feel free to reach out to me through [email](mailto:your@email.com) or [Twitter](https://twitter.com/your_twitter).
 
-### 1.0.0
+## License
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+This project is licensed under the [MIT License](./LICENSE).

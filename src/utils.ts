@@ -68,7 +68,7 @@ export function executePython(command: string) {
 
 export function openNotebook(filePath: string){
     const notebookFilePath = filePath.replace(/\.py$/, '.ipynb');
-    vscode.workspace.openTextDocument(notebookFilePath).then(document => {
+    vscode.workspace.openNotebookDocument(notebookFilePath).then(document => {
         vscode.window.showNotebookDocument(document);
     });
 }

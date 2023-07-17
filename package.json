@@ -2,6 +2,8 @@
   "name": "datascientists-utils",
   "displayName": "Datascientists utils",
   "description": "Utils for commonly used tools by datascientists",
+  "repository": "https://github.com/fmilanese-1/ds_utils",
+  "publisher": "FrancoMilanese",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.80.0"

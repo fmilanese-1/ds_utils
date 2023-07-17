@@ -21,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	let disposable2 = vscode.commands.registerCommand('dsUtils.scriptToNotebook', async (uri?: vscode.Uri) => {
+	let disposable2 = vscode.commands.registerCommand('dsUtils.scriptToNotebook', async (uri: vscode.Uri) => {
 		uri = uri || vscode.window.activeTextEditor?.document.uri;
 		vscode.window.showInformationMessage("Exporting " + uri + " to a notebook file.");
 		const command: string = 'jupytext --to notebook "' + uri.fsPath + '"';
@@ -29,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 		openNotebook(uri.fsPath);
 	});
 	
-	let disposable3 = vscode.commands.registerCommand('dsUtils.notebookToScript', async (uri?: vscode.Uri) => {
+	let disposable3 = vscode.commands.registerCommand('dsUtils.notebookToScript', async (uri: vscode.Uri) => {
 		uri = uri || vscode.window.activeTextEditor?.document.uri;
 		vscode.window.showInformationMessage("Exporting " + uri + " to a script file.");
 		const command: string = 'jupytext --to py:percent "' + uri.fsPath + '"';
@@ -37,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 		openScript(uri.fsPath);
 	});
 
-	let disposable4 = vscode.commands.registerCommand('dsUtils.exportToHTML', async (uri?: vscode.Uri) => {
+	let disposable4 = vscode.commands.registerCommand('dsUtils.exportToHTML', async (uri: vscode.Uri) => {
 		uri = uri || vscode.window.activeTextEditor?.document.uri;
 		vscode.window.showInformationMessage("Exporting " + uri + " to a html file.");
 		const html_folder = vscode.workspace.getConfiguration().get("dsUtils.htmlFolder");
@@ -46,7 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
 			target_html = uri.fsPath.replace(/\.ipynb$/, '.html');
 		}else{
 			const file_name = path.basename(uri.fsPath).replace(/\.ipynb$/, '.html');
-			target_html = path.join(html_folder, file_name);
+			target_html = path.join(String(html_folder), file_name);
 		}
 		const command: string = 'jupyter nbconvert --to html --template classic "' + uri.fsPath + '" --output "' + target_html + '"';
 		executePython(command);
