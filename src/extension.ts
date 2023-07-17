@@ -17,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showInformationMessage("Python intrepreter is working.");
 		}
 		else{
-			vscode.window.showInformationMessage("Python intrepreter isn't working.");
+			vscode.window.showErrorMessage("Python intrepreter isn't working.");
 		}
 	});
 
@@ -27,6 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const command: string = 'jupytext --to notebook "' + uri.fsPath + '"';
 		await executePython(command);
 		openNotebook(uri.fsPath);
+		vscode.window.showInformationMessage("Export done.");
 	});
 	
 	let disposable3 = vscode.commands.registerCommand('dsUtils.notebookToScript', async (uri: vscode.Uri) => {
@@ -35,6 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const command: string = 'jupytext --to py:percent "' + uri.fsPath + '"';
 		await executePython(command);
 		openScript(uri.fsPath);
+		vscode.window.showInformationMessage("Export done.");
 	});
 
 	let disposable4 = vscode.commands.registerCommand('dsUtils.exportToHTML', async (uri: vscode.Uri) => {
@@ -49,8 +51,15 @@ export function activate(context: vscode.ExtensionContext) {
 			target_html = path.join(String(html_folder), file_name);
 		}
 		const command: string = 'jupyter nbconvert --to html --template classic "' + uri.fsPath + '" --output "' + target_html + '"';
-		await executePython(command);
+		try {
+			await executePython(command);
+		} catch(error) {
+			console.log("ERROR");
+		}
+		
+		
 		injectTableOfContents(target_html);
+		vscode.window.showInformationMessage("Export done.");
 	});
 
 	context.subscriptions.push(disposable);
