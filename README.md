@@ -46,12 +46,11 @@ Please ensure your pull request adheres to the project's guidelines and conventi
 
 ## Release History
 
-- **Version 0.1.0** (2023-07-17)
+- **Version 0.0.1-2** (2023-07-17)
   - Pre-release version for testing and early feedback.
   - Included feature of exporting percent scripts to notebooks via Jupytext.
   - Included feature of exporting notebooks to percent scripts via Jupytext.
   - Included feature of exporting notebooks to HTML with a JS defined Table of Contents.
-
 
 For a complete list of releases and changes, please refer to the [Changelog](./CHANGELOG.md).
 
