@@ -25,15 +25,15 @@ export function activate(context: vscode.ExtensionContext) {
 		uri = uri || vscode.window.activeTextEditor?.document.uri;
 		vscode.window.showInformationMessage("Exporting " + uri + " to a notebook file.");
 		const command: string = 'jupytext --to notebook "' + uri.fsPath + '"';
-		executePython(command);
+		await executePython(command);
 		openNotebook(uri.fsPath);
 	});
-	
+
 	let disposable3 = vscode.commands.registerCommand('dsUtils.notebookToScript', async (uri?: vscode.Uri) => {
 		uri = uri || vscode.window.activeTextEditor?.document.uri;
 		vscode.window.showInformationMessage("Exporting " + uri + " to a script file.");
 		const command: string = 'jupytext --to py:percent "' + uri.fsPath + '"';
-		executePython(command);
+		await executePython(command);
 		openScript(uri.fsPath);
 	});
 
@@ -49,7 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
 			target_html = path.join(html_folder, file_name);
 		}
 		const command: string = 'jupyter nbconvert --to html --template classic "' + uri.fsPath + '" --output "' + target_html + '"';
-		executePython(command);
+		await executePython(command);
 		injectTableOfContents(target_html);
 	});
 
