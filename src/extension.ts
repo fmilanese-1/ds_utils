@@ -17,27 +17,29 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showInformationMessage("Python intrepreter is working.");
 		}
 		else{
-			vscode.window.showInformationMessage("Python intrepreter isn't working.");
+			vscode.window.showErrorMessage("Python intrepreter isn't working.");
 		}
 	});
 
-	let disposable2 = vscode.commands.registerCommand('dsUtils.scriptToNotebook', async (uri?: vscode.Uri) => {
+	let disposable2 = vscode.commands.registerCommand('dsUtils.scriptToNotebook', async (uri: vscode.Uri) => {
 		uri = uri || vscode.window.activeTextEditor?.document.uri;
 		vscode.window.showInformationMessage("Exporting " + uri + " to a notebook file.");
 		const command: string = 'jupytext --to notebook "' + uri.fsPath + '"';
-		executePython(command);
+		await executePython(command);
 		openNotebook(uri.fsPath);
+		vscode.window.showInformationMessage("Export done.");
 	});
 	
-	let disposable3 = vscode.commands.registerCommand('dsUtils.notebookToScript', async (uri?: vscode.Uri) => {
+	let disposable3 = vscode.commands.registerCommand('dsUtils.notebookToScript', async (uri: vscode.Uri) => {
 		uri = uri || vscode.window.activeTextEditor?.document.uri;
 		vscode.window.showInformationMessage("Exporting " + uri + " to a script file.");
 		const command: string = 'jupytext --to py:percent "' + uri.fsPath + '"';
-		executePython(command);
+		await executePython(command);
 		openScript(uri.fsPath);
+		vscode.window.showInformationMessage("Export done.");
 	});
 
-	let disposable4 = vscode.commands.registerCommand('dsUtils.exportToHTML', async (uri?: vscode.Uri) => {
+	let disposable4 = vscode.commands.registerCommand('dsUtils.exportToHTML', async (uri: vscode.Uri) => {
 		uri = uri || vscode.window.activeTextEditor?.document.uri;
 		vscode.window.showInformationMessage("Exporting " + uri + " to a html file.");
 		const html_folder = vscode.workspace.getConfiguration().get("dsUtils.htmlFolder");
@@ -46,11 +48,18 @@ export function activate(context: vscode.ExtensionContext) {
 			target_html = uri.fsPath.replace(/\.ipynb$/, '.html');
 		}else{
 			const file_name = path.basename(uri.fsPath).replace(/\.ipynb$/, '.html');
-			target_html = path.join(html_folder, file_name);
+			target_html = path.join(String(html_folder), file_name);
 		}
 		const command: string = 'jupyter nbconvert --to html --template classic "' + uri.fsPath + '" --output "' + target_html + '"';
-		executePython(command);
+		try {
+			await executePython(command);
+		} catch(error) {
+			console.log("ERROR");
+		}
+		
+		
 		injectTableOfContents(target_html);
+		vscode.window.showInformationMessage("Export done.");
 	});
 
 	context.subscriptions.push(disposable);

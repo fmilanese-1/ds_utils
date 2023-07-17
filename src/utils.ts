@@ -29,7 +29,7 @@ function hasExecutablePermission(filePath: string): boolean {
     try {
       // Get the file's stats and check it exists
       const stats = fs.statSync(filePath);
-      if (!stats.isFile()){ 
+      if (!stats.isFile()){
         return false;
       }
 
@@ -42,7 +42,7 @@ function hasExecutablePermission(filePath: string): boolean {
       // Handle file not found or permission denied errors
       console.error(error);
     }
-  
+
     return false;
   }
 
@@ -53,22 +53,30 @@ export function executePython(command: string) {
         String(command),
     );
     console.log(python_command);
-    exec(python_command, (error, stdout, stderr) => {
+
+
+    return new Promise((resolve, reject)=>{
+      exec(python_command, (error, stdout, stderr) => {
         if (error) {
             vscode.window.showErrorMessage(`error: ${error.message}`);
+            reject(error);
         }
         else if (stderr) {
             vscode.window.showErrorMessage(`stderr: ${stderr}`);
+            reject(error);
         }
         else {
         console.log(stdout);
+        resolve(stdout.trim());
         }
-    });
+      });
+    })
+
 }
 
 export function openNotebook(filePath: string){
     const notebookFilePath = filePath.replace(/\.py$/, '.ipynb');
-    vscode.workspace.openTextDocument(notebookFilePath).then(document => {
+    vscode.workspace.openNotebookDocument(notebookFilePath).then(document => {
         vscode.window.showNotebookDocument(document);
     });
 }
@@ -133,60 +141,60 @@ export function injectTableOfContents(filePath: string){
       text-decoration: underline;
     }
   </style>
-  
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    $(document).ready(function() {
-      var $toc = $('<div id="toc"></div>');
-      var $tocHeader = $('<h3>Table of Contents <span class="collapse-btn">Collapse</span></h3>');
-      var $tocList = $('<ul></ul>');
+  $(document).ready(function() {
+    var $toc = $('<div id="toc"></div>');
+    var $tocHeader = $('<h3>Table of Contents <span class="collapse-btn">Collapse</span></h3>');
+    var $tocList = $('<ul></ul>');
 
-      var levelCounts = [0, 0, 0];
+    var levelCounts = [0, 0, 0];
 
-      $('h1, h2, h3').each(function() {
-        var $header = $(this);
-        var headerText = $header.text();
-        var headerId = 'header-' + $header.index();
-        var headerLevel = parseInt(this.tagName.substr(1)) - 1;
+    $('h1, h2, h3').each(function() {
+      var $header = $(this);
+      var headerText = $header.text();
+      var headerLevel = parseInt(this.tagName.substr(1)) - 1;
 
-        $header.attr('id', headerId);
+      levelCounts[headerLevel]++;
+      for (var i = headerLevel + 1; i < levelCounts.length; i++) {
+        levelCounts[i] = 0;
+      }
 
-        levelCounts[headerLevel]++;
-        for (var i = headerLevel + 1; i < levelCounts.length; i++) {
-          levelCounts[i] = 0;
+      var headerId = 'header-' + levelCounts.slice(0, headerLevel + 1).join('.');
+      $header.attr('id', headerId);
+
+      var tocItemText = levelCounts.slice(0, headerLevel + 1).join('.') + ' ' + headerText;
+      var $tocItem = $('<li><a href="#' + headerId + '">' + tocItemText + '</a></li>');
+
+      if (headerLevel > 0) {
+        var $parentList = $tocList.children('li').last().children('ul');
+        if ($parentList.length === 0) {
+          $parentList = $('<ul></ul>');
+          $tocList.children('li').last().append($parentList);
         }
+        $parentList.append($tocItem);
+      } else {
+        $tocList.append($tocItem);
+      }
 
-        var tocItemText = levelCounts.slice(0, headerLevel + 1).join('.') + ' ' + headerText;
-        var $tocItem = $('<li><a href="#' + headerId + '">' + tocItemText + '</a></li>');
-
-        if (headerLevel > 0) {
-          var $parentList = $tocList.children('li').last().children('ul');
-          if ($parentList.length === 0) {
-            $parentList = $('<ul></ul>');
-            $tocList.children('li').last().append($parentList);
-          }
-          $parentList.append($tocItem);
-        } else {
-          $tocList.append($tocItem);
-        }
-
-        $header.text(tocItemText + ' ');
-      });
-
-      var $collapseBtn = $tocHeader.find('.collapse-btn');
-      var $tocListRootItems = $tocList.children('li');
-      var isCollapsed = false;
-
-      $collapseBtn.on('click', function() {
-        isCollapsed = !isCollapsed;
-        $tocListRootItems.toggle(!isCollapsed);
-        $collapseBtn.text(isCollapsed ? 'Expand' : 'Collapse');
-      });
-
-      $toc.append($tocHeader);
-      $toc.append($tocList);
-      $('body').append($toc);
+      $header.text(tocItemText + ' ');
     });
+
+    var $collapseBtn = $tocHeader.find('.collapse-btn');
+    var $tocListRootItems = $tocList.children('li');
+    var isCollapsed = false;
+
+    $collapseBtn.on('click', function() {
+      isCollapsed = !isCollapsed;
+      $tocListRootItems.toggle(!isCollapsed);
+      $collapseBtn.text(isCollapsed ? 'Expand' : 'Collapse');
+    });
+
+    $toc.append($tocHeader);
+    $toc.append($tocList);
+    $('body').append($toc);
+  });
   </script>
 `;
 
@@ -198,4 +206,3 @@ export function injectTableOfContents(filePath: string){
         vscode.window.showInformationMessage("Added TOC header to output html.");
     }
 }
-      

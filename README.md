@@ -1,71 +1,64 @@
-# datascientists-utils README
+# Datascientists Utils
 
-This is the README for your extension "datascientists-utils". After writing up a brief description, we recommend including the following sections.
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/YOUR_EXTENSION_ID)](https://marketplace.visualstudio.com/items?itemName=YOUR_EXTENSION_ID)
+[![GitHub](https://img.shields.io/github/license/YOUR_USERNAME/YOUR_REPOSITORY)](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/blob/main/LICENSE)
+
+> Seamlessly migrate to Visual Studio Code: Empowering data scientists to effortlessly transition from Jupyter to a superior coding experience. Right now we deal with HTML/TOC exports within VSCode and translations from Jupyter notebooks to percent scripts via [Jupytext](https://jupytext.readthedocs.io/en/latest/index.html).
+
+![Preview](./images/preview.gif)
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Transform notebooks to pure python scripts, via [Jupytext](https://jupytext.readthedocs.io/en/latest/index.html).
+- Transform py percent Python scripts to Notebooks, via [Jupytext](https://jupytext.readthedocs.io/en/latest/index.html).
+- Export HTML versions of Notebook with a dynamically allocated Table of Contents, via [nbconvert](https://nbconvert.readthedocs.io/en/latest/).
 
-For example if there is an image subfolder under your extension project workspace:
+### Next releases:
+- Style control over Table of Contents.
+- Automatic sync between paired notebooks and scripts.
+- Export to PDF.
 
-\!\[feature X\]\(images/feature-x.png\)
+## Installation
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+1. Launch Visual Studio Code.
+2. Go to the Extensions view (`Ctrl+Shift+X` or `Cmd+Shift+X` on macOS).
+3. Search for "Datascientists Utils" and click **Install**.
+4. Restart Visual Studio Code if prompted.
+5. On Extensions' setting page go to Datascience utils and add the full path to a python interpreter and a html exported folder.
 
-## Requirements
+## Usage
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. Describe how to access and utilize your extension's functionality.
+2. Provide examples and code snippets if applicable.
+3. Explain any settings or configurations users might need to set up.
 
-## Extension Settings
+## Contributing
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Contributions are welcome! Please follow these steps to contribute to the project:
 
-For example:
+1. Fork the repository.
+2. Create a new branch for your contribution.
+3. Make your changes and commit them.
+4. Push your changes to your fork.
+5. Submit a pull request to the main repository.
 
-This extension contributes the following settings:
+Please ensure your pull request adheres to the project's guidelines and conventions.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## Release History
 
-## Known Issues
+- **Version 0.0.1-3** (2023-07-17)
+  - Pre-release version for testing and early feedback.
+  - Included feature of exporting percent scripts to notebooks via Jupytext.
+  - Included feature of exporting notebooks to percent scripts via Jupytext.
+  - Included feature of exporting notebooks to HTML with a JS defined Table of Contents.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+For a complete list of releases and changes, please refer to the [Changelog](./CHANGELOG.md).
 
-## Release Notes
+## Feedback and Support
 
-Users appreciate release notes as you update your extension.
+- If you encounter any issues or have suggestions, please [create an issue](https://github.com/fmilanese-1/ds_utils/issues).
+- Feel free to reach out to me through [email](mailto:francomilanese@angloamerican.com) or [Linkedin](https://cl.linkedin.com/in/franco-milanese-88b780116).
 
-### 1.0.0
+## License
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+This project is licensed under the [Modified BSD License](./LICENSE.md).
