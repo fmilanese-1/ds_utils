@@ -1,7 +1,7 @@
 # Datascientists Utils
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/YOUR_EXTENSION_ID)](https://marketplace.visualstudio.com/items?itemName=YOUR_EXTENSION_ID)
-[![GitHub](https://img.shields.io/github/license/YOUR_USERNAME/YOUR_REPOSITORY)](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/blob/main/LICENSE)
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/FrancoMilanese.datascientists-utils)](https://marketplace.visualstudio.com/items?itemName=FrancoMilanese.datascientists-utils)
+[![GitHub](https://img.shields.io/github/license/fmilanese-1/ds_utils)](https://github.com/fmilanese-1/ds_utils/blob/main/LICENSE.md)
 
 > Seamlessly migrate to Visual Studio Code: Empowering data scientists to effortlessly transition from Jupyter to a superior coding experience. Right now we deal with HTML/TOC exports within VSCode and translations from Jupyter notebooks to percent scripts via [Jupytext](https://jupytext.readthedocs.io/en/latest/index.html).
 
@@ -46,7 +46,7 @@ Please ensure your pull request adheres to the project's guidelines and conventi
 
 ## Release History
 
-- **Version 0.0.1-3** (2023-07-17)
+- **Version 0.0.1-4** (2023-07-17)
   - Pre-release version for testing and early feedback.
   - Included feature of exporting percent scripts to notebooks via Jupytext.
   - Included feature of exporting notebooks to percent scripts via Jupytext.
