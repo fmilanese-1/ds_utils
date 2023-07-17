@@ -1,16 +1,35 @@
 {
   "name": "datascientists-utils",
   "displayName": "Datascientists utils",
-  "description": "Utils for commonly used tools by datascientists",
-  "repository": "https://github.com/fmilanese-1/ds_utils",
+  "description": "Utils commonly used by Datascientist.",
+  "homepage": "https://github.com/notebookPowerTools/vscode-jupytext",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/fmilanese-1/ds_utils"
+  },
+  "bugs": {
+      "url": "https://github.com/fmilanese-1/ds_utils/issues"
+  },
+  "keywords": [
+      "python",
+      "notebook",
+      "jupyter",
+      "jupytext",
+      "html toc",
+      "nbconvert"
+  ],
+  "categories": [
+      "Programming Languages",
+      "Data Science",
+      "Notebooks",
+      "Visualization"
+  ],
   "publisher": "FrancoMilanese",
+  "icon": "images/logo.png",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.80.0"
   },
-  "categories": [
-    "Other"
-  ],
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {

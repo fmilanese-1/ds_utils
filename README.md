@@ -3,15 +3,20 @@
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/YOUR_EXTENSION_ID)](https://marketplace.visualstudio.com/items?itemName=YOUR_EXTENSION_ID)
 [![GitHub](https://img.shields.io/github/license/YOUR_USERNAME/YOUR_REPOSITORY)](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/blob/main/LICENSE)
 
-> Your extension's tagline or brief description.
+> Seamlessly migrate to Visual Studio Code: Empowering data scientists to effortlessly transition from Jupyter to a superior coding experience. Right now we deal with HTML/TOC exports within VSCode and translations from Jupyter notebooks to percent scripts via [Jupytext](https://jupytext.readthedocs.io/en/latest/index.html).
 
-![Preview](./images/preview.png)
+![Preview](./images/logo.gif)
 
 ## Features
 
-- List the main features and functionalities of your extension.
-- Highlight how it solves the problems or provides value to users.
-- You can include screenshots or GIFs to demonstrate the usage.
+- Transform notebooks to pure python scripts, via [Jupytext](https://jupytext.readthedocs.io/en/latest/index.html).
+- Transform py percent Python scripts to Notebooks, via [Jupytext](https://jupytext.readthedocs.io/en/latest/index.html).
+- Export HTML versions of Notebook with a dynamically allocated Table of Contents, via [nbconvert](https://nbconvert.readthedocs.io/en/latest/).
+
+### Next releases:
+- Style control over Table of Contents.
+- Automatic sync between paired notebooks and scripts.
+- Export to PDF.
 
 ## Installation
 
@@ -53,8 +58,8 @@ For a complete list of releases and changes, please refer to the [Changelog](./C
 ## Feedback and Support
 
 - If you encounter any issues or have suggestions, please [create an issue](https://github.com/fmilanese-1/ds_utils/issues).
-- Feel free to reach out to me through [email](mailto:your@email.com) or [Twitter](https://twitter.com/your_twitter).
+- Feel free to reach out to me through [email](mailto:francomilanese@angloamerican.com) or [Linkedin](https://cl.linkedin.com/in/franco-milanese-88b780116).
 
 ## License
 
-This project is licensed under the [MIT License](./LICENSE).
+This project is licensed under the [Modified BSD License](./LICENSE.md).
