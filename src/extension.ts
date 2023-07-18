@@ -3,7 +3,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import {isExistingExecutable, executePython, openNotebook, openScript, injectTableOfContents} from './utils';
+import {isExistingExecutable, executePython, openNotebook, openScript, injectTableOfContents, addPairedNotebook} from './utils';
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -27,6 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const command: string = 'jupytext --to notebook "' + uri.fsPath + '"';
 		await executePython(command);
 		openNotebook(uri.fsPath);
+		addPairedNotebook(uri.fsPath);
 		vscode.window.showInformationMessage("Export done.");
 	});
 	
@@ -35,6 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage("Exporting " + uri + " to a script file.");
 		const command: string = 'jupytext --to py:percent "' + uri.fsPath + '"';
 		await executePython(command);
+		addPairedNotebook(uri.fsPath);
 		openScript(uri.fsPath);
 		vscode.window.showInformationMessage("Export done.");
 	});
@@ -62,10 +64,24 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage("Export done.");
 	});
 
+	let disposable5 = vscode.commands.registerCommand('dsUtils.checkAndPair', () => {
+		const uri = vscode.window.activeNotebookEditor?.notebook.uri.fsPath;
+		const pairedNotebooks = String(vscode.workspace.getConfiguration().get("dsUtils.pairedNotebooks")).split(";");
+		if (pairedNotebooks.includes(String(uri))) {
+			vscode.window.activeNotebookEditor?.notebook.save();
+			vscode.window.showInformationMessage("Syncing script " + uri + ".");
+			const command: string = 'jupytext --to py:percent "' + uri + '"';
+			executePython(command);
+			openScript(String(uri));
+			vscode.window.showInformationMessage("Sync done.");
+		}
+	});
+
 	context.subscriptions.push(disposable);
 	context.subscriptions.push(disposable2);
 	context.subscriptions.push(disposable3);
 	context.subscriptions.push(disposable4);
+	context.subscriptions.push(disposable5);
 }
 
 // This method is called when your extension is deactivated

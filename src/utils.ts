@@ -76,9 +76,7 @@ export function executePython(command: string) {
 
 export function openNotebook(filePath: string){
     const notebookFilePath = filePath.replace(/\.py$/, '.ipynb');
-    vscode.workspace.openNotebookDocument(notebookFilePath).then(document => {
-        vscode.window.showNotebookDocument(document);
-    });
+    vscode.commands.executeCommand("vscode.openWith", vscode.Uri.file(notebookFilePath), 'jupyter-notebook');
 }
 
 export function openScript(filePath: string){
@@ -86,6 +84,20 @@ export function openScript(filePath: string){
     vscode.workspace.openTextDocument(scriptFilePath).then(document => {
         vscode.window.showTextDocument(document);
     });
+}
+
+export function addPairedNotebook(filePath: string){
+  const notebookFilePath = filePath.replace(/\.py$/, '.ipynb');
+  const config = vscode.workspace.getConfiguration();
+  const pairedNotebooks = String(config.get("dsUtils.pairedNotebooks")).split(";")
+  pairedNotebooks.push(notebookFilePath);
+  const uniquePairedNotebooks = new Set(pairedNotebooks);
+  const sortedPairedNotebooks = Array.from(uniquePairedNotebooks).sort();
+  const resultString: string = sortedPairedNotebooks.join(';');
+
+  // Update the setting with the new value
+  config.update("dsUtils.pairedNotebooks", resultString, vscode.ConfigurationTarget.Global)
+
 }
 
 export function injectTableOfContents(filePath: string){
