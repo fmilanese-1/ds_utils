@@ -113,6 +113,7 @@ export function injectTableOfContents(filePath: string){
       border-radius: 5px;
       max-height: 400px; /* Set the maximum height for scrolling */
       overflow-y: auto; /* Enable vertical scrolling */
+      z-index: 1000;
     }
 
     #toc ul {

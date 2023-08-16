@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.5]  - 2023-07-18
+## [0.0.6]  - 2023-08-16
+ - Small bug on TOC, not showing as a top div
+
+## [0.0.5]  - 2023-07-18
  - Adds setting parameter where to allocate all paired notebooks
  - Adds auto pairing for paired Notebooks (via cntrl + shift + s) shortcut
 
