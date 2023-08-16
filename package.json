@@ -26,7 +26,7 @@
   ],
   "publisher": "FrancoMilanese",
   "icon": "images/logo.png",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -45,6 +45,11 @@
           "type": "string",
           "default": ".",
           "description": "Absolute or relative folder where to export html notebooks."
+        },
+        "dsUtils.pairedNotebooks": {
+          "type": "string",
+          "default": "",
+          "description": "A semicolon separated list of .ipynb files paired to a percent script representation."
         }
       }
     },
@@ -64,24 +69,36 @@
       {
         "command": "dsUtils.exportToHTML",
         "title": "Export to HTML"
+      },
+      {
+        "command": "dsUtils.checkAndPair",
+        "title": "Check if current file is a paired notebook and pair"
       }
     ],
     "menus": {
       "explorer/context": [
-          {
-              "command": "dsUtils.scriptToNotebook",
-              "when": "resourceLangId == python"
-          },
-          {
-            "command": "dsUtils.notebookToScript",
-            "when": "resourceExtname == .ipynb"
-          },
-          {
-            "command": "dsUtils.exportToHTML",
-            "when": "resourceExtname == .ipynb"
-          }
-        ]
+        {
+            "command": "dsUtils.scriptToNotebook",
+            "when": "resourceLangId == python"
+        },
+        {
+          "command": "dsUtils.notebookToScript",
+          "when": "resourceExtname == .ipynb"
+        },
+        {
+          "command": "dsUtils.exportToHTML",
+          "when": "resourceExtname == .ipynb"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "dsUtils.checkAndPair",
+        "key": "ctrl+shift+s",
+        "mac": "shift+cmd+s",
+        "when": "resourceExtname == .ipynb"
       }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

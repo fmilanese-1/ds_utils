@@ -46,6 +46,12 @@ Please ensure your pull request adheres to the project's guidelines and conventi
 
 ## Release History
 
+- **Version 0.0.6** (2023-08-16)
+  - Adds a fix to TOC positioning on html export. Now is always on top of every html element.
+
+- **Version 0.0.5** (2023-07-18)
+  - Adds command cntrl + shift + s por autopairing paired notebooks.
+
 - **Version 0.0.1-4** (2023-07-17)
   - Pre-release version for testing and early feedback.
   - Included feature of exporting percent scripts to notebooks via Jupytext.
